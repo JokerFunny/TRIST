@@ -1,0 +1,6 @@
+@EFKLoggingApi_HostAddress = http://localhost:5252
+
+GET {{EFKLoggingApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
