@@ -27,3 +27,4 @@ Validate the application metrics by visiting: http://localhost:8080/metrics
 Check Prometheus targets to ensure the application is registered: http://localhost:9090/targets
 
 Grafana can be accessed at: http://localhost:3000/
+(for more details, please check report)
