@@ -21,9 +21,13 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+    - name: Generate Timestamp Tag
+      id: generate_tag
+      run: echo "TAG=$(date +%s)" >> $GITHUB_ENV
+
     - name: Build and push Docker image to Dockerhub
       uses: docker/build-push-action@v5
       with:
        context: LR1/.
        push: true
-       tags: ${{ secrets.DOCKERHUB_USERNAME }}/trist-lr1:$(date +%s)
+       tags: ${{ secrets.DOCKERHUB_USERNAME }}/trist-lr1:${{ env.TAG }}
