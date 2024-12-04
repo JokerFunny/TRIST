@@ -1,0 +1,67 @@
+name: Terraform
+
+on:
+  push:
+    branches: [ "main" ]
+    paths: ['LR1/**']
+  pull_request:
+    branches: [ "main" ]
+    paths: ['LR2/**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    name: Terraform Init, Plan, and Apply
+    runs-on: ubuntu-latest
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # Step 1: Set up AWS credentials
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: eu-central-1
+
+    # Step 2: Set up Terraform
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.5.0
+
+    # Step 3: Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Initialize Terraform
+      working-directory: LR2
+      run: terraform init
+
+    # Step 4?: Checks that all Terraform configuration files adhere to a canonical format
+    - name: Format Terraform
+      working-directory: LR2
+      run: terraform fmt -check
+
+    # Step 5: Generates an execution plan for Terraform
+    - name: Plan Terraform
+      working-directory: LR2
+      run: terraform plan
+
+    # Step 6: Apply Terraform
+    - name: Apply Terraform
+      working-directory: LR2
+      run: terraform apply -auto-approve
+
+    # Step 7: Output Instance IP
+    - name: Output address of the deployed application
+      working-directory: LR2
+      run: terraform output nginx_url
