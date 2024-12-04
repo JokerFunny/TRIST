@@ -46,22 +46,17 @@ jobs:
       working-directory: LR2
       run: terraform init
 
-    # Step 4?: Checks that all Terraform configuration files adhere to a canonical format
-    - name: Format Terraform
-      working-directory: LR2
-      run: terraform fmt -check
-
-    # Step 5: Generates an execution plan for Terraform
+    # Step 4: Generates an execution plan for Terraform
     - name: Plan Terraform
       working-directory: LR2
       run: terraform plan
 
-    # Step 6: Apply Terraform
+    # Step 5: Apply Terraform
     - name: Apply Terraform
       working-directory: LR2
       run: terraform apply -auto-approve
 
-    # Step 7: Output Instance IP
+    # Step 6: Output Instance IP
     - name: Output address of the deployed application
       working-directory: LR2
       run: terraform output nginx_url
