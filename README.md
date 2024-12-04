@@ -2,7 +2,13 @@
  Репозиторій для предмету "Тенденції розвитку інформаційних систем та технологій", 13 семестр, КПІ.
 
 ## Lab 1:
-***
+Please check [report](https://github.com/JokerFunny/TRIST/blob/main/Reports/1.pdf). As it is deployed on-demand to AWS, I might change/terminate it.
+
+[Github Actions workflow definition](https://github.com/JokerFunny/TRIST/blob/main/.github/workflows/docker-image.yml).
+
+[Github Actions result](https://github.com/JokerFunny/TRIST/actions).
+
+[DockerHub registry](https://hub.docker.com/r/joker759/trist-lr1/tags).
 
 ## Lab 2:
 ***
@@ -14,17 +20,16 @@ docker-compose up -d
 Open the EFKLoggingApi.sln, build, and start the app (or use docker, but the Elasticsearch endpoint needs to be changed for this).
 Execute action(s) via swagger.
 
-Open Kibana by http://localhost:5601/, and check logs.
+Open [Kibana](http://localhost:5601/) and check logs.
 
 ## Lab 4:
 cd LR4
 docker-compose up -d
 
-The application can be accessed at: http://localhost:8080/swagger/index.html
+Check [application](http://localhost:8080/swagger/index.html), and validate the application [metrics](http://localhost:8080/metrics).
 
-Validate the application metrics by visiting: http://localhost:8080/metrics
+Check [Prometheus](http://localhost:9090/targets) targets to ensure the application is registered.
 
-Check Prometheus targets to ensure the application is registered: http://localhost:9090/targets
+Check [Grafana](http://localhost:3000/).
 
-Grafana can be accessed at: http://localhost:3000/
-(for more details, please check report)
+(for more details, please check the [report](https://github.com/JokerFunny/TRIST/blob/main/Reports/4.pdf))
