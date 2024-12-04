@@ -30,4 +30,6 @@ jobs:
       with:
        context: LR1/.
        push: true
-       tags: ${{ secrets.DOCKERHUB_USERNAME }}/trist-lr1:${{ env.TAG }}
+       tags: |
+          ${{ secrets.DOCKERHUB_USERNAME }}/trist-lr1:${{ env.TAG }}
+          ${{ secrets.DOCKERHUB_USERNAME }}/trist-lr1:latest
