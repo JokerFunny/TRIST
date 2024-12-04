@@ -41,6 +41,15 @@ jobs:
       working-directory: LR2
       run: terraform init
 
+    - name: Debug1
+      id: generate_tag
+      working-directory: LR2
+      run: ls
+
+    - name: Debug2
+      working-directory: LR2
+      run: terraform plan -destroy
+
     # Step 4: Destroy Terraform resources
     - name: Destroy Terraform resources
       working-directory: LR2
