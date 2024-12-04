@@ -11,7 +11,13 @@ Please check [report](https://github.com/JokerFunny/TRIST/blob/main/Reports/1.pd
 [DockerHub registry](https://hub.docker.com/r/joker759/trist-lr1/tags).
 
 ## Lab 2:
-***
+Please check [report](https://github.com/JokerFunny/TRIST/blob/main/Reports/2.pdf).
+
+[Github Actions Terraform apply workflow definition](https://github.com/JokerFunny/TRIST/blob/main/.github/workflows/terraform.yml).
+[Github Actions Terraform apply result](https://github.com/JokerFunny/TRIST/actions/workflows/terraform.yml).
+
+[Github Actions Terraform destroy workflow definition](https://github.com/JokerFunny/TRIST/blob/main/.github/workflows/terraform-destroy.yml).
+[Github Actions Terraform destroy result](https://github.com/JokerFunny/TRIST/actions/workflows/terraform-destroy.yml).
 
 ## Lab 3:
 cd LR3/EFK-stack
