@@ -27,36 +27,32 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    # Step 1: Set up AWS credentials
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: eu-central-1
-
-    # Step 2: Set up Terraform
+    # Step 1: Set up Terraform
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.5.0
 
-    # Step 3: Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    # Step 2: Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Initialize Terraform
       working-directory: LR2
       run: terraform init
+      env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
 
-    # Step 4: Generates an execution plan for Terraform
+    # Step 3: Generates an execution plan for Terraform
     - name: Plan Terraform
       working-directory: LR2
       run: terraform plan
 
-    # Step 5: Apply Terraform
+    # Step 4: Apply Terraform
     - name: Apply Terraform
       working-directory: LR2
       run: terraform apply -auto-approve
 
-    # Step 6: Output Instance IP
+    # Step 5: Output Instance IP
     - name: Output address of the deployed application
       working-directory: LR2
       run: terraform output nginx_url
