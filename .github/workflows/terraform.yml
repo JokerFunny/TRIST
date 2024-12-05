@@ -47,9 +47,19 @@ jobs:
       run: terraform init
 
     # Step 4: Generates an execution plan for Terraform
+    - name: State list Terraform
+      working-directory: LR2
+      run: terraform state list
+      
+    # Step 4: Generates an execution plan for Terraform
     - name: Refresh Terraform
       working-directory: LR2
       run: terraform refresh
+      
+    # Step 4: Generates an execution plan for Terraform
+    - name: State list Terraform
+      working-directory: LR2
+      run: terraform state list
       
     # Step 4: Generates an execution plan for Terraform
     - name: Plan Terraform
