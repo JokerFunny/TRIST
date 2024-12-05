@@ -47,9 +47,14 @@ jobs:
       run: terraform init
 
     # Step 4: Generates an execution plan for Terraform
+    - name: Refresh Terraform
+      working-directory: LR2
+      run: terraform refresh
+      
+    # Step 4: Generates an execution plan for Terraform
     - name: Plan Terraform
       working-directory: LR2
-      run: terraform plan -refresh-only
+      run: terraform plan
 
     # Step 5: Apply Terraform
     - name: Apply Terraform
